@@ -1,5 +1,6 @@
 package com.vaadin.flow.component.smart.view;
 
+import jakarta.annotation.Nonnull;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,7 +17,8 @@ public interface SmartView {
         private double availHeight;
     }
 
-    Info getInfo();
+    @Nonnull
+    Info getViewInfo();
 
     default void adjustViewForScreen() {
         // Do nothing here

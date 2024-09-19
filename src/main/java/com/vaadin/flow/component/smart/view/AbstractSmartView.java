@@ -4,20 +4,22 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import elemental.json.JsonObject;
+import jakarta.annotation.Nonnull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-public abstract class AbstractSmartView<C extends Component & HasSize>
+public abstract class AbstractSmartView<C extends Component & FlexComponent & HasSize>
         extends Composite<C>
         implements SmartView, BeforeEnterObserver {
 
-    @Getter
-    @Setter(value = AccessLevel.PRIVATE)
-    private Info info;
+    @Getter(onMethod_ = {@Override, @Nonnull})
+    @Setter(onParam_ = {@Nonnull}, value = AccessLevel.PRIVATE)
+    private Info viewInfo;
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
@@ -33,7 +35,7 @@ public abstract class AbstractSmartView<C extends Component & HasSize>
                         availHeight: screen.availHeight
                         };""")
                 .then(JsonObject.class, result -> {
-                    setInfo(Info.builder()
+                    setViewInfo(Info.builder()
                             .screenWidth(result.getNumber("screenWidth"))
                             .screenHeight(result.getNumber("screenHeight"))
                             .windowWidth(result.getNumber("innerWidth"))
@@ -47,7 +49,7 @@ public abstract class AbstractSmartView<C extends Component & HasSize>
 
         // Set listener for define screen size and adjusting content for screen
         UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> {
-            var info = getInfo();
+            var info = getViewInfo();
             info.setWindowWidth(event.getWidth());
             info.setWindowHeight(event.getHeight());
             adjustViewForScreen();
@@ -60,6 +62,8 @@ public abstract class AbstractSmartView<C extends Component & HasSize>
         var content = super.initContent();
         content.setSizeFull();
         content.setVisible(false);
+        content.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        content.setAlignItems(FlexComponent.Alignment.CENTER);
         return content;
     }
 
