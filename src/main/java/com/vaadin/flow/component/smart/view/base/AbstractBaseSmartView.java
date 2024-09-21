@@ -1,10 +1,13 @@
 package com.vaadin.flow.component.smart.view.base;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.smart.view.AbstractSmartView;
 import jakarta.annotation.Nonnull;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 public abstract class AbstractBaseSmartView<C extends FlexLayout>
         extends AbstractSmartView<C>
@@ -18,6 +21,12 @@ public abstract class AbstractBaseSmartView<C extends FlexLayout>
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final FlexLayout footerLayout = initFooterLayout();
+
+    @Override
+    public void adjustViewForScreen() {
+        BaseSmartView.super.adjustViewForScreen();
+        processEmptyComponents();
+    }
 
     @Override
     protected C initContent() {
@@ -62,6 +71,28 @@ public abstract class AbstractBaseSmartView<C extends FlexLayout>
         layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
         return layout;
+    }
+
+    protected boolean isHideEmptyComponents() {
+        return true;
+    }
+
+    private void processEmptyComponents() {
+        if (isHideEmptyComponents()) {
+            hideEmptyComponents(getContent());
+        }
+    }
+
+    private <T extends Component> void hideEmptyComponents(T componet) {
+
+        if ((HasText.class.isAssignableFrom(componet.getClass()) && StringUtils.isEmpty(((HasText) componet).getText()))
+                && componet.getChildren().findAny().isEmpty()) {
+            componet.setVisible(false);
+            return;
+        }
+
+        componet.getChildren().forEach(this::hideEmptyComponents);
+
     }
 
 }

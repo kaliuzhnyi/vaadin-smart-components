@@ -22,7 +22,8 @@ public class ExampleBaseSmartView
         layout.addClassNames(
                 LumoUtility.Background.CONTRAST_5
         );
-        layout.add(new Span("HeaderLayout"));
+        var text = new Span("HeaderLayout");
+        layout.add(text);
         return layout;
     }
 
@@ -33,7 +34,8 @@ public class ExampleBaseSmartView
         layout.addClassNames(
                 LumoUtility.Background.CONTRAST_10
         );
-        layout.add(new Span("BodyLayout"));
+        var text = new Span("BodyLayout");
+        layout.add(text);
         return layout;
     }
 
@@ -44,7 +46,8 @@ public class ExampleBaseSmartView
         layout.addClassNames(
                 LumoUtility.Background.CONTRAST_5
         );
-        layout.add(new Span("FooterLayout"));
+        var text = new Span("FooterLayout");
+        layout.add(text);
         return layout;
     }
 }
