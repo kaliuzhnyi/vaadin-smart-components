@@ -10,11 +10,18 @@ public abstract class AbstractSideBySideSmartView<C extends FlexLayout>
         extends AbstractBaseSmartView<C>
         implements SideBySideSmartView {
 
+    public static double DEFAULT_WIDTH_TO_CHANGE_FLEX_DIRECTION = 800;
+
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final FlexLayout primarySide = initPrimarySide();
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final FlexLayout secondarySide = initSecondarySide();
+
+    @Override
+    public double getWidthToChangeFlexDirection() {
+        return DEFAULT_WIDTH_TO_CHANGE_FLEX_DIRECTION;
+    }
 
     @Nonnull
     @Override
@@ -28,6 +35,12 @@ public abstract class AbstractSideBySideSmartView<C extends FlexLayout>
         return layout;
     }
 
+    @Override
+    public void adjustBodyLayoutForScreen() {
+        SideBySideSmartView.super.adjustBodyLayoutForScreen();
+        getBodyLayout().setFlexDirection(determinateFlexDirection());
+    }
+
     @Nonnull
     protected FlexLayout initPrimarySide() {
         var side = new FlexLayout();
@@ -37,6 +50,14 @@ public abstract class AbstractSideBySideSmartView<C extends FlexLayout>
         side.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         side.setAlignItems(FlexComponent.Alignment.END);
         return side;
+    }
+
+    @Override
+    public void adjustPrimarySideForScreen() {
+        SideBySideSmartView.super.adjustPrimarySideForScreen();
+        getPrimarySide().setAlignItems(determinateFlexDirection().equals(FlexLayout.FlexDirection.ROW)
+                ? FlexComponent.Alignment.END
+                : FlexComponent.Alignment.START);
     }
 
     @Nonnull
