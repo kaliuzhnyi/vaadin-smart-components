@@ -1,8 +1,8 @@
-package com.vaadin.flow.component.smart.view.side;
+package com.vaadin.flow.smart.view.side;
 
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
-import com.vaadin.flow.component.smart.view.base.AbstractBaseSmartView;
+import com.vaadin.flow.smart.view.base.AbstractBaseSmartView;
 import jakarta.annotation.Nonnull;
 import lombok.Getter;
 

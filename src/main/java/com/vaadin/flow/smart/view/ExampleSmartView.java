@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.smart.view;
+package com.vaadin.flow.smart.view;
 
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;

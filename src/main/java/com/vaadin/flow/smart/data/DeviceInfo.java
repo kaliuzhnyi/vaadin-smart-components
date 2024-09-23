@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.smart.data;
+package com.vaadin.flow.smart.data;
 
 import lombok.Builder;
 import lombok.Data;

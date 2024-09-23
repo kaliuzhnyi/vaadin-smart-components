@@ -1,14 +1,14 @@
-package com.vaadin.flow.component.smart.view;
+package com.vaadin.flow.smart.view;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.smart.data.DeviceInfo;
-import com.vaadin.flow.component.smart.data.DevicePlatform;
-import com.vaadin.flow.component.smart.data.DeviceType;
-import com.vaadin.flow.component.smart.data.ScreenInfo;
+import com.vaadin.flow.smart.data.DeviceInfo;
+import com.vaadin.flow.smart.data.DevicePlatform;
+import com.vaadin.flow.smart.data.DeviceType;
+import com.vaadin.flow.smart.data.ScreenInfo;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import elemental.json.JsonObject;

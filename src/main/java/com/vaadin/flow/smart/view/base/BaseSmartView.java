@@ -1,9 +1,9 @@
-package com.vaadin.flow.component.smart.view.base;
+package com.vaadin.flow.smart.view.base;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.smart.view.SmartView;
+import com.vaadin.flow.smart.view.SmartView;
 import jakarta.annotation.Nonnull;
 
 public interface BaseSmartView

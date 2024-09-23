@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.smart.view.side;
+package com.vaadin.flow.smart.view.base;
 
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
@@ -8,12 +8,12 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 
-@PageTitle("ExampleSideBySideSmartView")
-@Route(value = "example/side-by-side-smart-view")
+@PageTitle("ExampleBaseSmartView")
+@Route(value = "example/base-smart-view")
 @AnonymousAllowed
 @SuppressWarnings("unused")
-public class ExampleSideBySideSmartView
-        extends AbstractSideBySideSmartView<FlexLayout> {
+public class ExampleBaseSmartView
+        extends AbstractBaseSmartView<FlexLayout> {
 
     @Nonnull
     @Override
@@ -29,26 +29,14 @@ public class ExampleSideBySideSmartView
 
     @Nonnull
     @Override
-    protected FlexLayout initPrimarySide() {
-        var side = super.initPrimarySide();
-        side.addClassNames(
-                LumoUtility.Background.CONTRAST_30
+    protected FlexLayout initBodyLayout() {
+        var layout = super.initBodyLayout();
+        layout.addClassNames(
+                LumoUtility.Background.CONTRAST_10
         );
-        var text = new Span("PrimarySide");
-        side.add(text);
-        return side;
-    }
-
-    @Nonnull
-    @Override
-    protected FlexLayout initSecondarySide() {
-        var side = super.initSecondarySide();
-        side.addClassNames(
-                LumoUtility.Background.CONTRAST_20
-        );
-        var text = new Span("SecondarySide");
-        side.add(text);
-        return side;
+        var text = new Span("BodyLayout");
+        layout.add(text);
+        return layout;
     }
 
     @Nonnull
@@ -62,5 +50,4 @@ public class ExampleSideBySideSmartView
         layout.add(text);
         return layout;
     }
-
 }

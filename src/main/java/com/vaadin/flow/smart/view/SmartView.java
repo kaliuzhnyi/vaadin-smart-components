@@ -1,7 +1,7 @@
-package com.vaadin.flow.component.smart.view;
+package com.vaadin.flow.smart.view;
 
-import com.vaadin.flow.component.smart.data.DeviceInfo;
-import com.vaadin.flow.component.smart.data.ScreenInfo;
+import com.vaadin.flow.smart.data.DeviceInfo;
+import com.vaadin.flow.smart.data.ScreenInfo;
 import jakarta.annotation.Nonnull;
 
 public interface SmartView {

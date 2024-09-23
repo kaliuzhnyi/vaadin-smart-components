@@ -1,10 +1,10 @@
-package com.vaadin.flow.component.smart.view.base;
+package com.vaadin.flow.smart.view.base;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
-import com.vaadin.flow.component.smart.view.AbstractSmartView;
+import com.vaadin.flow.smart.view.AbstractSmartView;
 import jakarta.annotation.Nonnull;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;

@@ -1,4 +1,4 @@
-package com.vaadin.flow.component.smart;
+package com.vaadin.flow.smart;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
