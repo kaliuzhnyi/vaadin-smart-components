@@ -5,6 +5,10 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.smart.data.DeviceInfo;
+import com.vaadin.flow.component.smart.data.DevicePlatform;
+import com.vaadin.flow.component.smart.data.DeviceType;
+import com.vaadin.flow.component.smart.data.ScreenInfo;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import elemental.json.JsonObject;
@@ -19,7 +23,11 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
 
     @Getter(onMethod_ = {@Override, @Nonnull})
     @Setter(onParam_ = {@Nonnull}, value = AccessLevel.PRIVATE)
-    private Info viewInfo;
+    private ScreenInfo screenInfo;
+
+    @Getter(onMethod_ = {@Override, @Nonnull})
+    @Setter(onParam_ = {@Nonnull}, value = AccessLevel.PRIVATE)
+    private DeviceInfo deviceInfo;
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
@@ -32,10 +40,12 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
                         innerWidth: window.innerWidth,
                         innerHeight: window.innerHeight,
                         availWidth: screen.availWidth,
-                        availHeight: screen.availHeight
+                        availHeight: screen.availHeight,
+                        userAgent: navigator.userAgent
                         };""")
                 .then(JsonObject.class, result -> {
-                    setViewInfo(Info.builder()
+
+                    setScreenInfo(ScreenInfo.builder()
                             .screenWidth(result.getNumber("screenWidth"))
                             .screenHeight(result.getNumber("screenHeight"))
                             .windowWidth(result.getNumber("innerWidth"))
@@ -43,13 +53,20 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
                             .availWidth(result.getNumber("availWidth"))
                             .availHeight(result.getNumber("availHeight"))
                             .build());
+
+                    setDeviceInfo(DeviceInfo.builder()
+                            .userAgent(result.getString("userAgent"))
+                            .deviceType(DeviceType.determinateFromUserAgent(result.getString("userAgent")))
+                            .devicePlatform(DevicePlatform.determinateFromUserAgent(result.getString("userAgent")))
+                            .build());
+
                     adjustViewForScreen();
                     getContent().setVisible(true);
                 });
 
         // Set listener for define screen size and adjusting content for screen
         UI.getCurrent().getPage().addBrowserWindowResizeListener(event -> {
-            var info = getViewInfo();
+            var info = getScreenInfo();
             info.setWindowWidth(event.getWidth());
             info.setWindowHeight(event.getHeight());
             adjustViewForScreen();

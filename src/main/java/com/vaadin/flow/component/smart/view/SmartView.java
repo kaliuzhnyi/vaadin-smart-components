@@ -1,24 +1,16 @@
 package com.vaadin.flow.component.smart.view;
 
+import com.vaadin.flow.component.smart.data.DeviceInfo;
+import com.vaadin.flow.component.smart.data.ScreenInfo;
 import jakarta.annotation.Nonnull;
-import lombok.Builder;
-import lombok.Data;
 
 public interface SmartView {
 
-    @Data
-    @Builder
-    class Info {
-        private double screenWidth;
-        private double screenHeight;
-        private double windowWidth;
-        private double windowHeight;
-        private double availWidth;
-        private double availHeight;
-    }
+    @Nonnull
+    ScreenInfo getScreenInfo();
 
     @Nonnull
-    Info getViewInfo();
+    DeviceInfo getDeviceInfo();
 
     default void adjustViewForScreen() {
         // Do nothing here
