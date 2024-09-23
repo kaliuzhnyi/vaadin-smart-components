@@ -2,6 +2,7 @@ package com.vaadin.flow.smart.view.base;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasText;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.smart.view.AbstractSmartView;
@@ -86,6 +87,7 @@ public abstract class AbstractBaseSmartView<C extends FlexLayout>
     private <T extends Component> void hideEmptyComponents(T componet) {
 
         if ((HasText.class.isAssignableFrom(componet.getClass()) && StringUtils.isEmpty(((HasText) componet).getText()))
+                && (Image.class.isAssignableFrom(componet.getClass()) && StringUtils.isEmpty(((Image) componet).getSrc()))
                 && componet.getChildren().findAny().isEmpty()) {
             componet.setVisible(false);
             return;
