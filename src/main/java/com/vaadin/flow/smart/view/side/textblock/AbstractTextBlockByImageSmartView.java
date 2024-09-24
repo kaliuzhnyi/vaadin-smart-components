@@ -1,7 +1,8 @@
-package com.vaadin.flow.smart.view.side;
+package com.vaadin.flow.smart.view.side.textblock;
 
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.smart.component.textblock.DefaultTextBlockSmartComponent;
+import com.vaadin.flow.smart.view.side.AbstractSideByImageSmartView;
 import jakarta.annotation.Nonnull;
 import lombok.Getter;
 
@@ -15,7 +16,7 @@ public abstract class AbstractTextBlockByImageSmartView<C extends FlexLayout>
     @Nonnull
     protected DefaultTextBlockSmartComponent initTextBlockContainer() {
         var component = new DefaultTextBlockSmartComponent();
-        component.setId("side-by-image-smart-view-content-container");
+        component.setId("text-block-by-image-smart-view-text-block-container");
         return component;
     }
 
