@@ -1,6 +1,5 @@
 package com.vaadin.flow.smart.view.side;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.server.StreamResource;
@@ -37,9 +36,7 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
         side.addClassNames(
                 LumoUtility.Padding.End.LARGE
         );
-        side.add(
-                getImageContainer()
-        );
+        side.add(getImageContainer());
         return side;
     }
 
@@ -50,9 +47,7 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
         side.addClassNames(
                 LumoUtility.Padding.Start.LARGE
         );
-        side.add(
-                (Component) getContentContainer()
-        );
+        side.add(getContentContainer());
         return side;
     }
 
