@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-@Theme(value = "vaadin-smart-view")
+@Theme(value = "vaadin-smart-components")
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
