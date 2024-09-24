@@ -2,13 +2,16 @@ package com.vaadin.flow.smart.view.side;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Image;
+import jakarta.annotation.Nonnull;
 
 public interface SideByImageSmartView
         extends SideBySideSmartView {
 
+    @Nonnull
     Image getImageContainer();
 
-    <T extends Component> T getContentContainer();
+    @Nonnull
+    Component getContentContainer();
 
     @Override
     default void adjustPrimarySideForScreen() {
