@@ -63,11 +63,12 @@ public class ExampleSideByImageSmartView
         return side;
     }
 
+    @Nonnull
     @Override
-    public <T extends Component> T getContentContainer() {
+    public Component getContentContainer() {
         var container = new Div();
         container.setText("ContentContainer");
-        return (T) container;
+        return container;
     }
 
     @Nonnull
