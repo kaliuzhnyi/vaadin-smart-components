@@ -1,6 +1,8 @@
 package com.vaadin.flow.smart.view.side;
 
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -33,21 +35,29 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
     @Override
     protected FlexLayout initPrimarySide() {
         var side = super.initPrimarySide();
-        side.addClassNames(
-                LumoUtility.Padding.End.LARGE
+        side.add(
+                getImageContainer()
         );
-        side.add(getImageContainer());
         return side;
+    }
+
+    @Override
+    public void adjustPrimarySideForScreen() {
+        super.adjustPrimarySideForScreen();
+        if (determinateFlexDirection().equals(FlexLayout.FlexDirection.ROW)) {
+            getPrimarySide().setAlignItems(FlexComponent.Alignment.END);
+        } else {
+            getPrimarySide().setAlignItems(FlexComponent.Alignment.CENTER);
+        }
     }
 
     @Nonnull
     @Override
     protected FlexLayout initSecondarySide() {
         var side = super.initSecondarySide();
-        side.addClassNames(
-                LumoUtility.Padding.Start.LARGE
+        side.add(
+                getContentContainer()
         );
-        side.add(getContentContainer());
         return side;
     }
 
@@ -58,6 +68,9 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
         image.addClassNames(
                 LumoUtility.BorderRadius.MEDIUM
         );
+        image.setWidth(null);
+        image.setMaxWidth(100, Unit.PERCENTAGE);
+        image.addClassNames(LumoUtility.Margin.LARGE);
 
         Optional.ofNullable(getImageResourcePath())
                 .map(this::getFileFromResources)

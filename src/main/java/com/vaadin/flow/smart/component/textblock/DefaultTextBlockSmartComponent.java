@@ -28,7 +28,7 @@ public class DefaultTextBlockSmartComponent
         var layout = super.initContent();
         layout.setId("smart-component-textblock-layout");
         layout.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
-        layout.setWidthFull();
+        //layout.setWidthFull();
         layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         layout.setAlignItems(FlexComponent.Alignment.START);
         layout.add(
