@@ -65,12 +65,12 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
     protected Image initImageContainer() {
         var image = new Image();
         image.setId("side-by-image-smart-view-image-container");
-        image.addClassNames(
-                LumoUtility.BorderRadius.MEDIUM
-        );
         image.setWidth(null);
         image.setMaxWidth(100, Unit.PERCENTAGE);
-        image.addClassNames(LumoUtility.Margin.LARGE);
+        image.addClassNames(
+                LumoUtility.BorderRadius.MEDIUM,
+                LumoUtility.Margin.LARGE
+        );
 
         Optional.ofNullable(getImageResourcePath())
                 .map(this::getFileFromResources)

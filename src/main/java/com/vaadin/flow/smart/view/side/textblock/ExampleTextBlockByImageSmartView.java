@@ -68,6 +68,9 @@ public class ExampleTextBlockByImageSmartView
         container.getTitleComponent().setText("Title");
         container.getTextComponent().setText("Text");
         container.getRemarkComponent().setText("Remark");
+        container.addClassNames(
+                LumoUtility.Background.BASE
+        );
         return container;
     }
 
