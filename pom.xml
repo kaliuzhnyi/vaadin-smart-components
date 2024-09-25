@@ -6,7 +6,7 @@
     <groupId>com.vaadin.flow.smart</groupId>
     <artifactId>vaadin-smart-components</artifactId>
     <name>vaadin-smart-components</name>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -87,10 +87,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
