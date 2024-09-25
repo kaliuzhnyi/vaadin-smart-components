@@ -111,6 +111,9 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <version>${vaadin.version}</version>
+                <configuration>
+                    <requireHomeNodeExec>false</requireHomeNodeExec> <!-- Отключаем установку Node в ~/.vaadin -->
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
