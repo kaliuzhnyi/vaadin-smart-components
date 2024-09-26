@@ -3,6 +3,8 @@ package com.vaadin.flow.smart.view.side.signin;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.smart.view.side.AbstractSideByImageSmartView;
 import jakarta.annotation.Nonnull;
 import lombok.Getter;
@@ -13,6 +15,19 @@ public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout>
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final LoginForm form = initForm();
+
+    @Override
+    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
+        super.beforeEnter(beforeEnterEvent);
+
+        if (beforeEnterEvent.getLocation()
+                .getQueryParameters()
+                .getParameters()
+                .containsKey("error")) {
+            getForm().setError(true);
+        }
+
+    }
 
     @Override
     public void adjustSecondarySideForScreen() {
@@ -28,6 +43,7 @@ public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout>
     protected LoginForm initForm() {
         var form = new LoginForm();
         form.setId("signin-form-by-image-smart-view-form");
+        form.setAction("login");
         return form;
     }
 
