@@ -5,7 +5,6 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.flow.smart.component.textblock.DefaultTextBlockSmartComponent;
 import com.vaadin.flow.smart.view.side.textblock.AbstractTextBlockByImageSmartView;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
@@ -16,7 +15,7 @@ import jakarta.annotation.Nullable;
 @AnonymousAllowed
 @SuppressWarnings("unused")
 public class ExampleTextBlockByImageSmartView
-        extends AbstractTextBlockByImageSmartView<FlexLayout> {
+        extends AbstractTextBlockByImageSmartView<FlexLayout, ExampleTextBlockSmartComponent> {
 
     @Nonnull
     @Override
@@ -60,19 +59,6 @@ public class ExampleTextBlockByImageSmartView
                 LumoUtility.Background.CONTRAST_20
         );
         return side;
-    }
-
-    @Nonnull
-    @Override
-    protected DefaultTextBlockSmartComponent initTextBlockContainer() {
-        var container = super.initTextBlockContainer();
-        container.getTitleComponent().setText("Title");
-        container.getTextComponent().setText("Text");
-        container.getRemarkComponent().setText("Remark");
-        container.addClassNames(
-                LumoUtility.Background.BASE
-        );
-        return container;
     }
 
     @Nullable
