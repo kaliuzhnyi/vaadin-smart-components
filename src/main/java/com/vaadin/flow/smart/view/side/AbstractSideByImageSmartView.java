@@ -61,6 +61,16 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
         return side;
     }
 
+    @Override
+    public void adjustSecondarySideForScreen() {
+        SideByImageSmartView.super.adjustSecondarySideForScreen();
+        if (determinateFlexDirection().equals(FlexLayout.FlexDirection.ROW)) {
+            getSecondarySide().setAlignItems(FlexComponent.Alignment.END);
+        } else {
+            getSecondarySide().setAlignItems(FlexComponent.Alignment.CENTER);
+        }
+    }
+
     @Nonnull
     protected Image initImageContainer() {
         var image = new Image();
