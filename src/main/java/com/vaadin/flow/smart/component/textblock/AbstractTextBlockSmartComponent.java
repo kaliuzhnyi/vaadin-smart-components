@@ -24,7 +24,7 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
         TEXT extends Component & HasText & HasSize,
         REMARK extends Component & HasText & HasSize>
         extends Composite<C>
-        implements TextBlockSmartComponent {
+        implements TextBlockSmartComponent<C> {
 
     @Autowired
     @Getter(value = AccessLevel.PROTECTED, onMethod_ = {@Nonnull})
@@ -44,6 +44,13 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
     private final REMARK remarkComponent = initRemarkComponent();
 
     @Override
+    @Nonnull
+    public C getContent() {
+        return super.getContent();
+    }
+
+    @Override
+    @Nonnull
     protected C initContent() {
         var layout = super.initContent();
         layout.setId("smart-component-textblock-container");
