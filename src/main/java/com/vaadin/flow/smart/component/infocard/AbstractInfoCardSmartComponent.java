@@ -32,12 +32,6 @@ public abstract class AbstractInfoCardSmartComponent<C extends FlexLayout,
 
     @Override
     @Nonnull
-    public C getContent() {
-        return super.getContent();
-    }
-
-    @Override
-    @Nonnull
     protected C initContent() {
         var layout = super.initContent();
         layout.setId("smart-component-textblock-container");
