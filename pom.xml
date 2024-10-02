@@ -6,7 +6,7 @@
     <groupId>com.vaadin.flow.smart</groupId>
     <artifactId>vaadin-smart-components</artifactId>
     <name>vaadin-smart-components</name>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -86,11 +86,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.3.0</version>
-                <configuration>
-                    <excludes>
-                        <exclude>com/vaadin/flow/smart/examples/**</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
