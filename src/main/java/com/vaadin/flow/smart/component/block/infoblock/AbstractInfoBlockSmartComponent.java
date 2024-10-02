@@ -15,6 +15,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("rawtypes")
 public abstract class AbstractInfoBlockSmartComponent<C extends FlexLayout,
@@ -41,7 +42,10 @@ public abstract class AbstractInfoBlockSmartComponent<C extends FlexLayout,
                 getTitleComponent(),
                 getTextComponent()
         );
-        getCardComponents().forEach(content::add);
+
+        content.add(cardComponents.stream().map(card -> (Component) card).collect(Collectors.toList()));
+        //getCardComponents().forEach(content::add);
+
         return content;
     }
 
