@@ -1,7 +1,8 @@
 package com.vaadin.flow.smart.examples;
 
-import com.vaadin.flow.smart.component.textblock.DefaultTextBlockSmartComponent;
-import jakarta.annotation.Nullable;
+import com.vaadin.flow.smart.component.block.textblock.DefaultTextBlockSmartComponent;
+import jakarta.annotation.Nonnull;
+import lombok.Getter;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -12,21 +13,13 @@ import org.springframework.stereotype.Component;
 public class ExampleTextBlockSmartComponent
         extends DefaultTextBlockSmartComponent {
 
-    @Nullable
-    @Override
-    protected String getTitleComponentText() {
-        return "Title";
-    }
+    @Getter(onMethod_ = {@Override, @Nonnull})
+    private String titleComponentText = "Title";
 
-    @Nullable
-    @Override
-    protected String getTextComponentText() {
-        return "Text";
-    }
+    @Getter(onMethod_ = {@Override, @Nonnull})
+    private String textComponentText = "Text";
 
-    @Nullable
-    @Override
-    protected String getRemarkComponentText() {
-        return "Remark";
-    }
+    @Getter(onMethod_ = {@Override, @Nonnull})
+    private String remarkComponentText = "Remark";
+
 }

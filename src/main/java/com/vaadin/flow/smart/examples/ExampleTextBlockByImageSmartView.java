@@ -5,7 +5,7 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.flow.smart.view.side.textblock.AbstractTextBlockByImageSmartView;
+import com.vaadin.flow.smart.view.side.block.textblock.AbstractTextBlockByImageSmartView;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;

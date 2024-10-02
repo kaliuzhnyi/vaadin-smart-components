@@ -2,7 +2,6 @@ package com.vaadin.flow.smart.examples;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -70,13 +69,6 @@ public class ExampleSideByImageSmartView
         var container = new Div();
         container.setText("ContentContainer");
         return container;
-    }
-
-    @Nonnull
-    @Override
-    public Image getImageContainer() {
-        var image = super.getImageContainer();
-        return image;
     }
 
     @Nullable

@@ -1,20 +1,15 @@
-package com.vaadin.flow.smart.component.textblock;
+package com.vaadin.flow.smart.component.block.textblock;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.smart.component.block.AbstractBlockSmartComponent;
 import com.vaadin.flow.smart.util.GenericUtils;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
-import lombok.AccessLevel;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
-import org.springframework.context.MessageSource;
 
 import java.util.Locale;
 import java.util.Optional;
@@ -23,16 +18,8 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
         TITLE extends Component & HasText & HasSize,
         TEXT extends Component & HasText & HasSize,
         REMARK extends Component & HasText & HasSize>
-        extends Composite<C>
+        extends AbstractBlockSmartComponent<C>
         implements TextBlockSmartComponent<C> {
-
-    @Autowired
-    @Getter(value = AccessLevel.PROTECTED, onMethod_ = {@Nonnull})
-    private AutowireCapableBeanFactory beanFactory;
-
-    @Autowired
-    @Getter(value = AccessLevel.PROTECTED, onMethod_ = {@Nonnull})
-    private MessageSource messageSource;
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final TITLE titleComponent = initTitleComponent();
@@ -45,24 +32,14 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
 
     @Override
     @Nonnull
-    public C getContent() {
-        return super.getContent();
-    }
-
-    @Override
-    @Nonnull
     protected C initContent() {
-        var layout = super.initContent();
-        layout.setId("smart-component-textblock-container");
-        layout.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
-        layout.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
-        layout.setAlignItems(FlexComponent.Alignment.START);
-        layout.add(
+        var content = super.initContent();
+        content.add(
                 getTitleComponent(),
                 getTextComponent(),
                 getRemarkComponent()
         );
-        return layout;
+        return content;
     }
 
     @Nonnull
@@ -156,13 +133,6 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
     @Nonnull
     protected Locale getLocale() {
         return Locale.getDefault();
-    }
-
-    @Nullable
-    private String getMessage(@Nullable String code) {
-        return Optional.ofNullable(code)
-                .map(c -> getMessageSource().getMessage(code, null, getLocale()))
-                .orElse(null);
     }
 
 }

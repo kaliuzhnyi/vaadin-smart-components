@@ -1,14 +1,13 @@
-package com.vaadin.flow.smart.component.textblock;
+package com.vaadin.flow.smart.component.block.textblock;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.smart.component.block.BlockSmartComponent;
 import jakarta.annotation.Nonnull;
 
-public interface TextBlockSmartComponent<C extends FlexLayout> {
-
-    @Nonnull
-    C getContent();
+public interface TextBlockSmartComponent<C extends FlexLayout>
+        extends BlockSmartComponent<C> {
 
     @Nonnull
     <T extends Component & HasText> T getTitleComponent();
