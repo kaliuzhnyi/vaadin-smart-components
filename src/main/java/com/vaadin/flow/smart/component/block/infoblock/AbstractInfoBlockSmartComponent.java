@@ -43,7 +43,7 @@ public abstract class AbstractInfoBlockSmartComponent<C extends FlexLayout,
                 getTextComponent()
         );
 
-        content.add(cardComponents.stream().map(card -> (Component) card).collect(Collectors.toList()));
+        content.add(getCardComponents().stream().map(card -> (Component) card).collect(Collectors.toList()));
         //getCardComponents().forEach(content::add);
 
         return content;
