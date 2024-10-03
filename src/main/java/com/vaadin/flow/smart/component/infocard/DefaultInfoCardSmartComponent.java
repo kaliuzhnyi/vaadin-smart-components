@@ -1,8 +1,11 @@
 package com.vaadin.flow.smart.component.infocard;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,5 +20,9 @@ public class DefaultInfoCardSmartComponent
     private String subTitleComponentText;
 
     private String textComponentText;
+
+    private List<String> subTitleComponentTextParts;
+
+    private List<Component> subTitleComponentTextComponents;
 
 }
