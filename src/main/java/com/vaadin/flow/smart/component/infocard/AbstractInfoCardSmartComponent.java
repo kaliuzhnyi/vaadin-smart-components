@@ -1,6 +1,7 @@
 package com.vaadin.flow.smart.component.infocard;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -11,12 +12,15 @@ import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractInfoCardSmartComponent<C extends FlexLayout,
         TITLE extends Component & HasText & HasSize,
-        SUBTITLE extends Component & HasText & HasSize,
+        SUBTITLE extends Component & HasText & HasSize & HasComponents,
         TEXT extends Component & HasText & HasSize>
         extends AbstractSmartComponent<C>
         implements InfoCardSmartComponent<C> {
@@ -91,8 +95,19 @@ public abstract class AbstractInfoCardSmartComponent<C extends FlexLayout,
                 LumoUtility.TextColor.SECONDARY
         );
 
+        // Set text
+        var textParts = new ArrayList<String>();
         Optional.ofNullable(getSubTitleComponentText())
+                .ifPresent(textParts::add);
+        Optional.ofNullable(getSubTitleComponentTextParts())
+                .ifPresent(textParts::addAll);
+        Optional.of(textParts)
+                .map(s -> String.join(getSubTitleComponentTextPartsSeparator(), s))
                 .ifPresent(component::setText);
+
+        // Set components
+        Optional.ofNullable(getSubTitleComponentTextComponents())
+                .ifPresent(component::add);
 
         return component;
     }
@@ -104,6 +119,21 @@ public abstract class AbstractInfoCardSmartComponent<C extends FlexLayout,
 
     @Nullable
     protected String getSubTitleComponentMessageCode() {
+        return null;
+    }
+
+    @Nullable
+    protected List<String> getSubTitleComponentTextParts() {
+        return null;
+    }
+
+    @Nonnull
+    protected String getSubTitleComponentTextPartsSeparator() {
+        return StringUtils.SPACE;
+    }
+
+    @Nullable
+    protected List<Component> getSubTitleComponentTextComponents() {
         return null;
     }
 
