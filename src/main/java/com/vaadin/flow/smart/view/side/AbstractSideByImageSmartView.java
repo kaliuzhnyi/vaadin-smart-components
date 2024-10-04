@@ -77,6 +77,8 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
         image.setId("side-by-image-smart-view-image-container");
         image.setWidth(null);
         image.setMaxWidth(100, Unit.PERCENTAGE);
+        image.setHeight(null);
+        image.setMaxHeight(100, Unit.PERCENTAGE);
         image.addClassNames(
                 LumoUtility.BorderRadius.MEDIUM,
                 LumoUtility.Margin.LARGE
