@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 
 import java.io.ByteArrayInputStream;
-import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -105,7 +104,8 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
     @SneakyThrows
     private byte[] getFileFromResources(@Nonnull String path) {
         var resource = getResourceLoader().getResource("classpath:" + path);
-        return Files.readAllBytes(resource.getFile().toPath());
+        var inputStream = resource.getInputStream();
+        return inputStream.readAllBytes();
     }
 
 }
