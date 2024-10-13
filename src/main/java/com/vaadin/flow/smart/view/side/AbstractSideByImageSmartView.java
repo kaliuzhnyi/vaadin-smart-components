@@ -10,6 +10,7 @@ import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -29,6 +30,10 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final Image imageContainer = initImageContainer();
+
+    @Getter(AccessLevel.PROTECTED)
+    @Setter(AccessLevel.PRIVATE)
+    private boolean hasImage = false;
 
     @Nonnull
     @Override
@@ -83,16 +88,26 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
                 LumoUtility.Margin.LARGE
         );
 
-        Optional.ofNullable(getImageResourcePath())
-                .map(this::getFileFromResources)
+        Optional.ofNullable(getImageData())
                 .filter(Predicate.not(v -> Arrays.equals(v, new byte[0])))
-                .ifPresent(v -> {
+                .ifPresentOrElse(v -> {
+                    setHasImage(true);
                     var streamResource = new StreamResource("Image",
                             () -> new ByteArrayInputStream(v));
                     image.setSrc(streamResource);
+                }, () -> {
+                    setHasImage(false);
+                    image.setSrc("");
                 });
 
         return image;
+    }
+
+    @Nullable
+    protected byte[] getImageData() {
+        return Optional.ofNullable(getImageResourcePath())
+                .map(this::getFileFromResources)
+                .orElse(null);
     }
 
     @Nullable

@@ -1,6 +1,7 @@
 package com.vaadin.flow.smart.examples;
 
 import com.vaadin.flow.smart.component.navigationmenu.DefaultNavigationMenuSmartComponent;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

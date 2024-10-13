@@ -6,8 +6,19 @@
     <groupId>com.vaadin.flow.smart</groupId>
     <artifactId>vaadin-smart-components</artifactId>
     <name>vaadin-smart-components</name>
-    <version>1.0.22</version>
+    <version>1.0.23</version>
     <packaging>jar</packaging>
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Ivan Kaliuzhnyi</name>
+            <email>i.kaliuzhnyi@icloud.com</email>
+            <roles>
+                <role>Founder</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
