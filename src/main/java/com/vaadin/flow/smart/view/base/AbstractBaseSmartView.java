@@ -85,15 +85,29 @@ public abstract class AbstractBaseSmartView<C extends FlexLayout>
     }
 
     private <T extends Component> void hideEmptyComponents(T componet) {
-
-        if ((HasText.class.isAssignableFrom(componet.getClass()) && StringUtils.isEmpty(((HasText) componet).getText()))
-                && (Image.class.isAssignableFrom(componet.getClass()) && StringUtils.isEmpty(((Image) componet).getSrc()))
-                && componet.getChildren().findAny().isEmpty()) {
+        componet.getChildren().forEach(this::hideEmptyComponents);
+        if (isComponentEmpty(componet)) {
             componet.setVisible(false);
-            return;
+        }
+    }
+
+    private <T extends Component> boolean isComponentEmpty(T component) {
+        var componentClass = component.getClass();
+
+        if (Image.class.isAssignableFrom(componentClass)) {
+            return StringUtils.isEmpty(((Image) component).getSrc())
+                    && (component.getChildren().findAny().isEmpty()
+                    || component.getChildren().noneMatch(Component::isVisible));
         }
 
-        componet.getChildren().forEach(this::hideEmptyComponents);
+        if (HasText.class.isAssignableFrom(componentClass)) {
+            return StringUtils.isEmpty(((HasText) component).getText())
+                    && (component.getChildren().findAny().isEmpty()
+                    || component.getChildren().noneMatch(Component::isVisible));
+        }
+
+        return component.getChildren().findAny().isEmpty()
+                || component.getChildren().noneMatch(Component::isVisible);
 
     }
 
