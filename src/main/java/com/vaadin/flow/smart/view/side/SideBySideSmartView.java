@@ -24,6 +24,18 @@ public interface SideBySideSmartView
                 : FlexLayout.FlexDirection.COLUMN;
     }
 
+    default boolean isFlexDirectionRow() {
+        var flexDirection = determinateFlexDirection();
+        return flexDirection.equals(FlexLayout.FlexDirection.ROW)
+                || flexDirection.equals(FlexLayout.FlexDirection.ROW_REVERSE);
+    }
+
+    default boolean isFlexDirectionColumn() {
+        var flexDirection = determinateFlexDirection();
+        return flexDirection.equals(FlexLayout.FlexDirection.COLUMN)
+                || flexDirection.equals(FlexLayout.FlexDirection.COLUMN_REVERSE);
+    }
+
     @Override
     default void adjustBodyLayoutForScreen() {
         BaseSmartView.super.adjustBodyLayoutForScreen();

@@ -10,8 +10,8 @@ import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 
@@ -31,10 +31,6 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final Image imageContainer = initImageContainer();
 
-    @Getter(AccessLevel.PROTECTED)
-    @Setter(AccessLevel.PRIVATE)
-    private boolean hasImage = false;
-
     @Nonnull
     @Override
     protected FlexLayout initPrimarySide() {
@@ -47,8 +43,8 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
 
     @Override
     public void adjustPrimarySideForScreen() {
-        super.adjustPrimarySideForScreen();
-        if (determinateFlexDirection().equals(FlexLayout.FlexDirection.ROW)) {
+        SideByImageSmartView.super.adjustPrimarySideForScreen();
+        if (isFlexDirectionRow()) {
             getPrimarySide().setAlignItems(FlexComponent.Alignment.END);
         } else {
             getPrimarySide().setAlignItems(FlexComponent.Alignment.CENTER);
@@ -68,7 +64,7 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
     @Override
     public void adjustSecondarySideForScreen() {
         SideByImageSmartView.super.adjustSecondarySideForScreen();
-        if (determinateFlexDirection().equals(FlexLayout.FlexDirection.ROW)) {
+        if (isFlexDirectionRow()) {
             getSecondarySide().setAlignItems(FlexComponent.Alignment.START);
         } else {
             getSecondarySide().setAlignItems(FlexComponent.Alignment.CENTER);
@@ -91,16 +87,18 @@ public abstract class AbstractSideByImageSmartView<C extends FlexLayout>
         Optional.ofNullable(getImageData())
                 .filter(Predicate.not(v -> Arrays.equals(v, new byte[0])))
                 .ifPresentOrElse(v -> {
-                    setHasImage(true);
                     var streamResource = new StreamResource("Image",
                             () -> new ByteArrayInputStream(v));
                     image.setSrc(streamResource);
                 }, () -> {
-                    setHasImage(false);
                     image.setSrc("");
                 });
 
         return image;
+    }
+
+    protected boolean isImageContainerHasImageData() {
+        return StringUtils.isNoneEmpty(getImageContainer().getSrc());
     }
 
     @Nullable

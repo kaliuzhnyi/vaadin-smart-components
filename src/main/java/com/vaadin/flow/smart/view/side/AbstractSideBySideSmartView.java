@@ -55,7 +55,7 @@ public abstract class AbstractSideBySideSmartView<C extends FlexLayout>
     @Override
     public void adjustPrimarySideForScreen() {
         SideBySideSmartView.super.adjustPrimarySideForScreen();
-        getPrimarySide().setAlignItems(determinateFlexDirection().equals(FlexLayout.FlexDirection.ROW)
+        getPrimarySide().setAlignItems(isFlexDirectionRow()
                 ? FlexComponent.Alignment.END
                 : FlexComponent.Alignment.START);
     }
@@ -71,4 +71,13 @@ public abstract class AbstractSideBySideSmartView<C extends FlexLayout>
         return side;
     }
 
+    @Override
+    public final boolean isFlexDirectionRow() {
+        return SideBySideSmartView.super.isFlexDirectionRow();
+    }
+
+    @Override
+    public final boolean isFlexDirectionColumn() {
+        return SideBySideSmartView.super.isFlexDirectionColumn();
+    }
 }
