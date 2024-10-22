@@ -5,6 +5,8 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.router.AfterNavigationEvent;
+import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.smart.data.DeviceInfo;
@@ -19,7 +21,7 @@ import lombok.Setter;
 
 public abstract class AbstractSmartView<C extends Component & FlexComponent & HasSize>
         extends Composite<C>
-        implements SmartView, BeforeEnterObserver {
+        implements SmartView, BeforeEnterObserver, AfterNavigationObserver {
 
     @Getter(onMethod_ = {@Override, @Nonnull})
     @Setter(onParam_ = {@Nonnull}, value = AccessLevel.PRIVATE)
@@ -72,6 +74,13 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
             adjustViewForScreen();
         });
 
+    }
+
+    @Override
+    public void afterNavigation(AfterNavigationEvent event) {
+        // Do nothing here
+        // It's just stub method
+        // This method is only for overriding
     }
 
     @Override

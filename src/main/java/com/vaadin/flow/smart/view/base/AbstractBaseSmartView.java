@@ -5,13 +5,18 @@ import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.RouterLayout;
+import com.vaadin.flow.smart.component.navigationmenu.NavigationMenuSmartComponent;
+import com.vaadin.flow.smart.layout.SmartAppLayout;
 import com.vaadin.flow.smart.view.AbstractSmartView;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.Optional;
 
 public abstract class AbstractBaseSmartView<C extends FlexLayout>
         extends AbstractSmartView<C>
@@ -29,6 +34,19 @@ public abstract class AbstractBaseSmartView<C extends FlexLayout>
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final FlexLayout footerLayout = initFooterLayout();
+
+    @Override
+    public void afterNavigation(AfterNavigationEvent event) {
+        super.afterNavigation(event);
+
+        // Highlight current view in menu
+        Optional.ofNullable(getAppLayout())
+                .filter(l -> l instanceof SmartAppLayout)
+                .map(l -> ((SmartAppLayout) l).getNavbarMenu())
+                .filter(m -> m instanceof NavigationMenuSmartComponent<?>)
+                .map(m -> (NavigationMenuSmartComponent<?>) m)
+                .ifPresent(m -> m.highlightItem(this.getClass()));
+    }
 
     @Override
     public void adjustViewForScreen() {
