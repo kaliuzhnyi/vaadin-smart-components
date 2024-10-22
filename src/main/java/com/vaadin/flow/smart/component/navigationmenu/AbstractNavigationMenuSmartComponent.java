@@ -133,14 +133,28 @@ public abstract class AbstractNavigationMenuSmartComponent
 
     private void highlightMenuItem(@Nonnull Map<MenuItem, Class<? extends Component>> menuItemsMap,
                                    @Nonnull Class<? extends Component> viewClass) {
+
+        var classNamesForMenuItem = new String[]{
+                LumoUtility.Background.PRIMARY
+        };
+        var classNamesForRouterLink = new String[]{
+                LumoUtility.TextColor.PRIMARY_CONTRAST
+        };
+
         menuItemsMap.entrySet().stream()
+                .peek(e -> {
+                    e.getKey().removeClassNames(classNamesForMenuItem);
+                    e.getKey().getChildren()
+                            .filter(child -> child instanceof RouterLink)
+                            .forEach(routerLink -> routerLink.removeClassNames(classNamesForRouterLink));
+                })
                 .filter(e -> e.getValue().equals(viewClass))
                 .map(Map.Entry::getKey)
                 .forEach(item -> {
-                    item.addClassNames(LumoUtility.Background.PRIMARY);
+                    item.addClassNames(classNamesForMenuItem);
                     item.getChildren()
                             .filter(child -> child instanceof RouterLink)
-                            .forEach(routerLink -> routerLink.addClassNames(LumoUtility.TextColor.PRIMARY_CONTRAST));
+                            .forEach(routerLink -> routerLink.addClassNames(classNamesForRouterLink));
                 });
     }
 
