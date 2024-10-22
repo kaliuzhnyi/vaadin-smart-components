@@ -1,7 +1,7 @@
 package com.vaadin.flow.smart.examples;
 
 import com.vaadin.flow.smart.component.navigationmenu.DefaultNavigationMenuSmartComponent;
-import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.vaadin.flow.smart.examples.view.ExampleNavigationMenuSmartComponentView;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -15,11 +15,11 @@ public class ExampleNavigationMenuSmartComponent
 
     @PostConstruct
     private void init() {
-        addItem("Link", ExampleNavigationMenuSmartComponentView.class);
-        addItem("Link", ExampleNavigationMenuSmartComponentView.class);
-        addItem("Link", ExampleSideByImageSmartView.class);
-        addItem("Link", ExampleNavigationMenuSmartComponentView.class);
-        addItem("Link", ExampleNavigationMenuSmartComponentView.class);
+        addItem("Link 1", ExampleNavigationMenuSmartComponentView.class);
+        addItem("Link 2", ExampleNavigationMenuSmartComponentView.class);
+        addItem("Link 3", ExampleSideByImageSmartView.class);
+        addItem("Link 4", ExampleNavigationMenuSmartComponentView.class);
+        addItem("Link 5", ExampleNavigationMenuSmartComponentView.class);
         highlightItem(ExampleSideByImageSmartView.class);
     }
 

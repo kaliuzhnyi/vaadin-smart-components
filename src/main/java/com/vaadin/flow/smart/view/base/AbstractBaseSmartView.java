@@ -5,14 +5,21 @@ import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.smart.view.AbstractSmartView;
 import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 
 public abstract class AbstractBaseSmartView<C extends FlexLayout>
         extends AbstractSmartView<C>
         implements BaseSmartView {
+
+    @Getter(onMethod_ = {@Override, @Nullable})
+    @Setter(onMethod_ = {@Override}, onParam_ = {@Nullable})
+    private RouterLayout appLayout;
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final FlexLayout headerLayout = initHeaderLayout();
