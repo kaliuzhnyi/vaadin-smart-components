@@ -4,17 +4,11 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.flow.smart.examples.ExampleNavigationMenuSmartComponent;
 import com.vaadin.flow.smart.examples.layout.ExampleLayoutSmartAppLayout;
 import com.vaadin.flow.smart.view.base.AbstractBaseSmartView;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @PageTitle("ExampleNavigationMenuSmartComponentView")
 @Route(value = "example/base-smart-view-with-navigation-menu-smart-component", layout = ExampleLayoutSmartAppLayout.class)
@@ -23,10 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ExampleNavigationMenuSmartComponentView
         extends AbstractBaseSmartView<FlexLayout> {
 
-//    @Autowired
-//    @Getter(AccessLevel.PRIVATE)
-//    private ExampleNavigationMenuSmartComponent menu;
-
     @Nonnull
     @Override
     protected FlexLayout initHeaderLayout() {
@@ -34,9 +24,6 @@ public class ExampleNavigationMenuSmartComponentView
         layout.addClassNames(
                 LumoUtility.Background.CONTRAST_5
         );
-//        layout.add(
-//                getMenu()
-//        );
         return layout;
     }
 
