@@ -1,5 +1,6 @@
 package com.vaadin.flow.smart.examples;
 
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -32,6 +33,7 @@ public class ExampleSideBySideSmartView
     @Override
     protected FlexLayout initPrimarySide() {
         var side = super.initPrimarySide();
+//        side.setWidth(50, Unit.PERCENTAGE);
         side.addClassNames(
                 LumoUtility.Background.CONTRAST_30
         );

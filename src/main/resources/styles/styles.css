@@ -1,0 +1,10 @@
+/* Скрытие скроллбара в WebKit-браузерах (Chrome, Safari, Opera) */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Скрытие скроллбара в IE и Edge */
+.hide-scrollbar {
+    -ms-overflow-style: none; /* IE и Edge */
+    scrollbar-width: none; /* Firefox */
+}

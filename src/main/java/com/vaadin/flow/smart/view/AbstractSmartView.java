@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
@@ -19,6 +20,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
+@CssImport("./styles/styles.css")
 public abstract class AbstractSmartView<C extends Component & FlexComponent & HasSize>
         extends Composite<C>
         implements SmartView, BeforeEnterObserver, AfterNavigationObserver {
@@ -43,6 +45,8 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
                         innerHeight: window.innerHeight,
                         availWidth: screen.availWidth,
                         availHeight: screen.availHeight,
+                        scrollWidth: document.documentElement.scrollWidth,
+                        scrollHeight: document.documentElement.scrollHeight
                         userAgent: navigator.userAgent
                         };""")
                 .then(JsonObject.class, result -> {
@@ -54,6 +58,8 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
                             .windowHeight(result.getNumber("innerHeight"))
                             .availWidth(result.getNumber("availWidth"))
                             .availHeight(result.getNumber("availHeight"))
+                            .scrollWidth(result.getNumber("scrollWidth"))
+                            .availHeight(result.getNumber("scrollHeight"))
                             .build());
 
                     setDeviceInfo(DeviceInfo.builder()

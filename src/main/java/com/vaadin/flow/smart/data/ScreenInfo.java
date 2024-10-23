@@ -19,4 +19,8 @@ public class ScreenInfo {
 
     private double availHeight;
 
+    private double scrollWidth;
+
+    private double scrollHeight;
+
 }

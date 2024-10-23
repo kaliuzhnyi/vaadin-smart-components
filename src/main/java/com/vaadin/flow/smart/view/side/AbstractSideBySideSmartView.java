@@ -47,6 +47,7 @@ public abstract class AbstractSideBySideSmartView<C extends FlexLayout>
         side.setId("side-by-side-smart-view-primary-side");
         side.setFlexDirection(FlexLayout.FlexDirection.COLUMN);
         side.setSizeFull();
+        side.setWidth("50%");
         side.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         side.setAlignItems(FlexComponent.Alignment.END);
         return side;
