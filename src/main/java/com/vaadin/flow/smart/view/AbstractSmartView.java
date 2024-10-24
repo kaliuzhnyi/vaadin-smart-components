@@ -20,7 +20,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-//@CssImport(value = "./styles/vaadin-smart-components-styles.css")
+@CssImport(value = "./styles/vaadin-smart-components.css")
 public abstract class AbstractSmartView<C extends Component & FlexComponent & HasSize>
         extends Composite<C>
         implements SmartView, BeforeEnterObserver, AfterNavigationObserver {
@@ -46,7 +46,7 @@ public abstract class AbstractSmartView<C extends Component & FlexComponent & Ha
                         availWidth: screen.availWidth,
                         availHeight: screen.availHeight,
                         scrollWidth: document.documentElement.scrollWidth,
-                        scrollHeight: document.documentElement.scrollHeight
+                        scrollHeight: document.documentElement.scrollHeight,
                         userAgent: navigator.userAgent
                         };""")
                 .then(JsonObject.class, result -> {
