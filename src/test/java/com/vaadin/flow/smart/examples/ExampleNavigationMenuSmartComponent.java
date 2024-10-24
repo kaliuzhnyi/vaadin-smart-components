@@ -15,12 +15,11 @@ public class ExampleNavigationMenuSmartComponent
 
     @PostConstruct
     private void init() {
-        addItem("Link 1", ExampleNavigationMenuSmartComponentView.class);
+        addItem("Link 1", ExampleSideByImageSmartView.class);
         addItem("Link 2", ExampleNavigationMenuSmartComponentView.class);
         addItem("Link 3", ExampleSideByImageSmartView.class);
-        addItem("Link 4", ExampleNavigationMenuSmartComponentView.class);
-        addItem("Link 5", ExampleNavigationMenuSmartComponentView.class);
-        highlightItem(ExampleSideByImageSmartView.class);
+        addItem("Link 4", ExampleSideByImageSmartView.class);
+        addItem("Link 5", ExampleSideByImageSmartView.class);
     }
 
 }
