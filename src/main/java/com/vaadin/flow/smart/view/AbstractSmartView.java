@@ -20,7 +20,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
-@CssImport(value = "./styles/styles.css")
+//@CssImport(value = "./styles/vaadin-smart-components-styles.css")
 public abstract class AbstractSmartView<C extends Component & FlexComponent & HasSize>
         extends Composite<C>
         implements SmartView, BeforeEnterObserver, AfterNavigationObserver {
