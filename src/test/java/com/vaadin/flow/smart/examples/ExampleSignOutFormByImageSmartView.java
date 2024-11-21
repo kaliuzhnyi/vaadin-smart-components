@@ -5,18 +5,18 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.flow.smart.examples.form.ExampleSigInSmartForm;
-import com.vaadin.flow.smart.view.side.signin.AbstractSignInFormByImageSmartView;
+import com.vaadin.flow.smart.examples.form.ExampleSigOutSmartForm;
+import com.vaadin.flow.smart.view.side.signout.AbstractSignOutFormByImageSmartView;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
-@PageTitle("ExampleSignInFormByImageSmartView")
-@Route(value = "example/signin-form-by-image-smart-view")
+@PageTitle("ExampleSignOutFormByImageSmartView")
+@Route(value = "example/signout-form-by-image-smart-view")
 @AnonymousAllowed
 @SuppressWarnings("unused")
-public class ExampleSignInFormByImageSmartView
-        extends AbstractSignInFormByImageSmartView<FlexLayout, ExampleSigInSmartForm> {
+public class ExampleSignOutFormByImageSmartView
+        extends AbstractSignOutFormByImageSmartView<FlexLayout, ExampleSigOutSmartForm> {
 
     @Nonnull
     @Override
@@ -67,5 +67,6 @@ public class ExampleSignInFormByImageSmartView
     protected String getImageResourcePath() {
         return "images/example.png";
     }
+
 
 }

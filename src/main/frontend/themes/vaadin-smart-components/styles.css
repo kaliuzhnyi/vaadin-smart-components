@@ -1,0 +1,10 @@
+/* Custom styles for component LoginForm */
+
+vaadin-login-form vaadin-login-form-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+vaadin-login-form-wrapper::part(form) {
+    padding: 0 !important;
+}

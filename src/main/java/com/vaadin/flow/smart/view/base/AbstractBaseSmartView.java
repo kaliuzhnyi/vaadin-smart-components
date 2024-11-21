@@ -2,9 +2,12 @@ package com.vaadin.flow.smart.view.base;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasText;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.component.textfield.TextFieldBase;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.smart.component.navigationmenu.NavigationMenuSmartComponent;
@@ -118,6 +121,12 @@ public abstract class AbstractBaseSmartView<C extends FlexLayout>
 
     private <T extends Component> boolean isComponentEmpty(T component) {
         var componentClass = component.getClass();
+
+        if (LoginForm.class.isAssignableFrom(componentClass)
+                || FormLayout.class.isAssignableFrom(componentClass)
+                || TextFieldBase.class.isAssignableFrom(componentClass)) {
+            return false;
+        }
 
         if (Image.class.isAssignableFrom(componentClass)) {
             return StringUtils.isEmpty(((Image) component).getSrc())

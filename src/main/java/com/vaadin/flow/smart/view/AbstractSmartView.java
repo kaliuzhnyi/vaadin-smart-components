@@ -1,7 +1,6 @@
 package com.vaadin.flow.smart.view;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -10,6 +9,7 @@ import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.smart.component.AbstractSmartComponent;
 import com.vaadin.flow.smart.data.DeviceInfo;
 import com.vaadin.flow.smart.data.DevicePlatform;
 import com.vaadin.flow.smart.data.DeviceType;
@@ -22,7 +22,7 @@ import lombok.Setter;
 
 @CssImport(value = "./styles/vaadin-smart-components.css")
 public abstract class AbstractSmartView<C extends Component & FlexComponent & HasSize>
-        extends Composite<C>
+        extends AbstractSmartComponent<C>
         implements SmartView, BeforeEnterObserver, AfterNavigationObserver {
 
     @Getter(onMethod_ = {@Override, @Nonnull})
