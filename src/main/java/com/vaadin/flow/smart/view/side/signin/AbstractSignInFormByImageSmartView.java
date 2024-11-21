@@ -12,11 +12,11 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.smart.component.form.SmartForm;
 import com.vaadin.flow.smart.component.form.signin.SignInSmartForm;
-import com.vaadin.flow.smart.util.GenericUtils;
-import com.vaadin.flow.smart.view.side.AbstractSideByImageSmartView;
+import com.vaadin.flow.smart.view.side.block.AbstractBlockByImageSmartView;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -24,14 +24,11 @@ import java.util.Optional;
 @SuppressWarnings("rawtypes")
 public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout,
         F extends Component & SignInSmartForm>
-        extends AbstractSideByImageSmartView<C>
+        extends AbstractBlockByImageSmartView<C, F>
         implements SignInFormByImageSmartView<F> {
 
     @Getter(onMethod_ = {@Nonnull}, lazy = true)
     private final FlexLayout formWrapper = initFormWrapper();
-
-    @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
-    private final F form = initForm();
 
     @Getter(onMethod_ = {@Nonnull}, lazy = true)
     private final FlexLayout buttonSignUpWrapper = initButtonSignUpWrapper();
@@ -55,6 +52,18 @@ public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout,
 
     }
 
+    @PostConstruct
+    protected void adjustForm() {
+        var form = getForm();
+        form.getContent().getStyle().setWidth(HasSize.getCssSize(100, Unit.PERCENTAGE)); // override
+    }
+
+    @Nonnull
+    @Override
+    public F getForm() {
+        return getBlockContainer();
+    }
+
     @Override
     @Nonnull
     public Component getContentContainer() {
@@ -76,15 +85,6 @@ public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout,
                 getButtonSignUpWrapper()
         );
         return wrapper;
-    }
-
-    @Nonnull
-    protected F initForm() {
-        Class<F> type = GenericUtils.getType(getClass(), AbstractSignInFormByImageSmartView.class, 1);
-        var form = getBeanFactory().createBean(type);
-        form.setId("signin-form-by-image-smart-view-form");
-        form.getContent().getStyle().setWidth(HasSize.getCssSize(100, Unit.PERCENTAGE)); // override
-        return form;
     }
 
     @Nonnull
@@ -130,8 +130,8 @@ public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout,
         );
 
         Optional.ofNullable(getButtonSignUpTarget())
-                        .ifPresent(t ->
-                                button.addClickListener(event -> UI.getCurrent().navigate(t)));
+                .ifPresent(t ->
+                        button.addClickListener(event -> UI.getCurrent().navigate(t)));
         return button;
     }
 
