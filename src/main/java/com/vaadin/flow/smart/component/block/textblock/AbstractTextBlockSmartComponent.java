@@ -11,7 +11,6 @@ import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.Getter;
 
-import java.util.Locale;
 import java.util.Optional;
 
 public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
@@ -127,12 +126,6 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
     @Nullable
     protected String getRemarkComponentMessageCode() {
         return null;
-    }
-
-
-    @Nonnull
-    protected Locale getLocale() {
-        return Locale.getDefault();
     }
 
 }
