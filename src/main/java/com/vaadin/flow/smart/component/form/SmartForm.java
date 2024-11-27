@@ -10,7 +10,4 @@ public interface SmartForm<C extends Component>
     float DEFAULT_CONTENT_WIDTH_VALUE = 50;
     Unit DEFAULT_CONTENT_WIDTH_UNIT = Unit.PERCENTAGE;
 
-//    @Nonnull
-//    C getContent();
-
 }

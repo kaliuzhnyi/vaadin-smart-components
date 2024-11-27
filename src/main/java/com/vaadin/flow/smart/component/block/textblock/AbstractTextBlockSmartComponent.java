@@ -102,7 +102,7 @@ public abstract class AbstractTextBlockSmartComponent<C extends FlexLayout,
 
     @Nonnull
     protected REMARK initRemarkComponent() {
-        Class<REMARK> type = GenericUtils.getType(getClass(), AbstractTextBlockSmartComponent.class, 1);
+        Class<REMARK> type = GenericUtils.getType(getClass(), AbstractTextBlockSmartComponent.class, 3);
         var component = getBeanFactory().createBean(type);
         component.setId("smart-component-textblock-remark");
         component.setWidthFull();
