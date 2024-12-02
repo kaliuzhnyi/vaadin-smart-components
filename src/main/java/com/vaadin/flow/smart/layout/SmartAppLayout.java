@@ -10,6 +10,7 @@ import com.vaadin.flow.smart.component.HasScreenInfo;
 import com.vaadin.flow.smart.component.navigationmenu.NavigationMenuSmartComponent;
 import com.vaadin.flow.smart.data.DeviceInfo;
 import com.vaadin.flow.smart.data.ScreenInfo;
+import com.vaadin.flow.smart.view.base.BaseSmartView;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
@@ -39,7 +40,12 @@ public interface SmartAppLayout
         var view = getView();
         var cls = getViewClass();
 
-        // If has annotation @PageTitle
+        // If implements BaseSmartView
+        if (BaseSmartView.class.isAssignableFrom(cls)) {
+            return ((BaseSmartView) view).getViewTitle();
+        }
+
+        // If class has annotation @PageTitle
         if (cls.isAnnotationPresent(PageTitle.class)) {
             var annotation = cls.getAnnotation(PageTitle.class);
             return annotation.value();
