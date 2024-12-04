@@ -6,7 +6,7 @@
     <groupId>com.vaadin.flow.smart</groupId>
     <artifactId>vaadin-smart-components</artifactId>
     <name>vaadin-smart-components</name>
-    <version>1.1.10</version>
+    <version>1.1.11</version>
     <packaging>jar</packaging>
     <developers>
         <developer>
