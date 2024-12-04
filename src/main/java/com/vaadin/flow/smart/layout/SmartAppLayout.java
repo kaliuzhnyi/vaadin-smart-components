@@ -22,11 +22,14 @@ public interface SmartAppLayout
     @Nonnull
     <T extends Component> T getView();
 
-    @Nonnull
+    @Nullable
     <T extends FlexLayout> T getNavbarWrapper();
 
     @Nullable
     <T extends Component> T getNavbarMenu();
+
+    @Nullable
+    <T extends FlexLayout> T getDrawerWrapper();
 
     @Nonnull
     @SuppressWarnings("unchecked")
