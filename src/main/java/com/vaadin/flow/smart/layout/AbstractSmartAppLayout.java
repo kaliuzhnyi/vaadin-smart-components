@@ -139,7 +139,10 @@ public abstract class AbstractSmartAppLayout
     @Nonnull
     protected Header initDrawerHeader() {
         var component = new Header();
-        component.addClassNames(LumoUtility.Margin.Horizontal.MEDIUM);
+        component.addClassNames(
+                LumoUtility.Margin.Top.MEDIUM,
+                LumoUtility.Margin.Horizontal.MEDIUM
+        );
         return component;
     }
 
@@ -154,7 +157,10 @@ public abstract class AbstractSmartAppLayout
     @Nonnull
     protected Footer initDrawerFooter() {
         var component = new Footer();
-        component.addClassNames(LumoUtility.Margin.Horizontal.MEDIUM);
+        component.addClassNames(
+                LumoUtility.Margin.Bottom.MEDIUM,
+                LumoUtility.Margin.Horizontal.MEDIUM
+        );
         return component;
     }
 
