@@ -174,6 +174,7 @@ public abstract class AbstractSignUpSmartForm
 
         // Check email
         getFieldEmail().setHelperText(getEmailHelperText());
+        getFieldEmail().setHelperComponent(new Span(getEmailHelperText()));
         var email = getFieldEmail().getValue();
         var emailHasError = false;
         var emailErrorMessage = new StringBuilder();
@@ -203,7 +204,8 @@ public abstract class AbstractSignUpSmartForm
         }
 
         // Check password
-        getFieldPassword().setHelperText(getPasswordHelperText());
+        getFieldPassword().setHelperText(getPasswordConfirmHelperText());
+        getFieldPassword().setHelperComponent(new Span(getPasswordHelperText()));
         var password = getFieldPassword().getValue();
         var passwordHasError = false;
         var passwordErrorMessage = new StringBuilder();
@@ -239,7 +241,8 @@ public abstract class AbstractSignUpSmartForm
         }
 
         // Check confirm password
-        getFieldPasswordConfirm().setHelperText(getPasswordConfirmHelperText());
+        //getFieldPasswordConfirm().setHelperText(getPasswordConfirmHelperText());
+        getFieldPasswordConfirm().setHelperComponent(new Span(getPasswordConfirmHelperText()));
         var passwordConfirm = getFieldPasswordConfirm().getValue();
         var passwordConfirmHasError = false;
         var passwordConfirmErrorMessage = new StringBuilder();
