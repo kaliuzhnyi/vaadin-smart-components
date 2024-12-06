@@ -7,17 +7,23 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.smart.component.AbstractSmartComponent;
+import com.vaadin.flow.spring.security.AuthenticationContext;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import lombok.AccessLevel;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
 public abstract class AbstractSignOutSmartForm
         extends AbstractSmartComponent<FormLayout>
         implements SignOutSmartForm<FormLayout> {
+
+    @Autowired
+    @Getter(onMethod_ = {@Nonnull}, value = AccessLevel.PROTECTED)
+    private AuthenticationContext authenticationContext;
 
     @Getter(onMethod_ = {@Override, @Nonnull}, lazy = true)
     private final H2 componentTitle = initComponentTitle();
@@ -36,12 +42,10 @@ public abstract class AbstractSignOutSmartForm
         content.addClassNames(
                 LumoUtility.Padding.MEDIUM
         );
-
         content.add(
                 getComponentTitle(),
                 getButtonsWrapper()
         );
-
         return content;
     }
 
@@ -88,7 +92,9 @@ public abstract class AbstractSignOutSmartForm
         return button;
     }
 
-    protected abstract void handleEventSignOut(@Nonnull ClickEvent<?> clickEvent);
+    protected void handleEventSignOut(@Nonnull ClickEvent<?> clickEvent) {
+        getAuthenticationContext().logout();
+    }
 
     @Nonnull
     protected String getButtonSignOutText() {
