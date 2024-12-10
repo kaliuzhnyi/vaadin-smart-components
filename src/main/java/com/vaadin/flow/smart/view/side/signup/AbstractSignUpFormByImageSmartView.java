@@ -79,6 +79,9 @@ public abstract class AbstractSignUpFormByImageSmartView<C extends FlexLayout,
         wrapper.setFlexDirection(FlexLayout.FlexDirection.ROW);
         wrapper.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
         wrapper.setAlignItems(FlexComponent.Alignment.CENTER);
+        wrapper.addClassNames(
+                LumoUtility.Margin.Top.LARGE
+        );
         Optional.ofNullable(getButtonSignInEncouragementMessage()).ifPresent(wrapper::add);
         Optional.ofNullable(getButtonSignIn()).ifPresent(wrapper::add);
         return wrapper;

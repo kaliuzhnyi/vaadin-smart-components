@@ -13,9 +13,6 @@ public abstract class AbstractSignInSmartForm
     protected LoginForm initContent() {
         var content = super.initContent();
         content.getStyle().setWidth(HasSize.getCssSize(DEFAULT_CONTENT_WIDTH_VALUE, DEFAULT_CONTENT_WIDTH_UNIT));
-        content.addClassNames(
-                LumoUtility.Padding.MEDIUM
-        );
         content.setAction("login");
         return content;
     }

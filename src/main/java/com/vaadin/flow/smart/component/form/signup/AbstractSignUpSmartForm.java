@@ -47,10 +47,6 @@ public abstract class AbstractSignUpSmartForm
         var content = super.initContent();
         content.setWidth(DEFAULT_CONTENT_WIDTH_VALUE, DEFAULT_CONTENT_WIDTH_UNIT);
         content.setResponsiveSteps(new FormLayout.ResponsiveStep("0", 1));
-        content.addClassNames(
-                LumoUtility.Padding.MEDIUM
-        );
-
         content.add(
                 getComponentTitle(),
                 getFieldEmail(),
