@@ -1,7 +1,9 @@
 package com.vaadin.flow.smart.view.side.signup;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Span;
@@ -13,6 +15,7 @@ import com.vaadin.flow.smart.view.side.block.AbstractBlockByImageSmartView;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -34,6 +37,12 @@ public abstract class AbstractSignUpFormByImageSmartView<C extends FlexLayout,
 
     @Getter(onMethod_ = {@Override, @Nullable}, lazy = true)
     private final Button buttonSignIn = initButtonSignIn();
+
+    @PostConstruct
+    protected void adjustForm() {
+        var form = getForm();
+        form.getContent().getStyle().setWidth(HasSize.getCssSize(100, Unit.PERCENTAGE)); // override
+    }
 
     @Nonnull
     @Override
