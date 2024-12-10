@@ -109,7 +109,7 @@ public abstract class AbstractSignInFormByImageSmartView<C extends FlexLayout,
     @Nonnull
     protected String getButtonSignUpEncouragementMessageText() {
         return Optional.ofNullable(getMessage(getButtonSignUpEncouragementMessageTextMessageCode()))
-                .orElse("Still have not an account?");
+                .orElse("Don't have an account yet?");
     }
 
     @Nullable

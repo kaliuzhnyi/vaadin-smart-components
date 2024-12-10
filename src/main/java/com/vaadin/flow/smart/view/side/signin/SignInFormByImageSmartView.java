@@ -4,7 +4,6 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.smart.component.block.BlockSmartComponent;
 import com.vaadin.flow.smart.component.form.signin.SignInSmartForm;
-import com.vaadin.flow.smart.view.side.SideByImageSmartView;
 import com.vaadin.flow.smart.view.side.block.BlockByImageSmartView;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
@@ -31,9 +30,4 @@ public interface SignInFormByImageSmartView<F extends Component & SignInSmartFor
         return (T) getForm();
     }
 
-//    @Override
-//    @Nonnull
-//    default F getBlockContainer() {
-//        return getForm();
-//    }
 }
