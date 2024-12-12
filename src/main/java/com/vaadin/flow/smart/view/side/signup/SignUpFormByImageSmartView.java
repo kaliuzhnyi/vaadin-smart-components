@@ -8,9 +8,14 @@ import com.vaadin.flow.smart.view.side.block.BlockByImageSmartView;
 import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 
+import java.util.List;
+
 @SuppressWarnings("rawtypes")
 public interface SignUpFormByImageSmartView<F extends Component & SignUpSmartForm>
         extends BlockByImageSmartView {
+
+    String ROUTE_TEMPLATE = "signup";
+    List<String> ROUTE_TEMPLATE_ALIASES = List.of();
 
     @Nonnull
     F getForm();

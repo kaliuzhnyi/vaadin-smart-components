@@ -95,7 +95,7 @@ public interface SignUpSmartForm<C extends FormLayout>
 
     @Nonnull
     default String getPasswordPatternSpecialCharacter() {
-        return "@$!%*?&";
+        return "@$!%*?&.";
     }
 
     @Nullable
